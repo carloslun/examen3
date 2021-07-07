@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import Categoria, Cliente, Producto, Administrador
-from .serializers import CategoriaSerializer, ProductoSerializer
+from .serializers import CategoriaSerializer, ProductoSerializer, ClienteSerializer, AdministradorSerializer
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -17,6 +17,12 @@ def categoriaList(request):
     serializer = CategoriaSerializer(categoria, many=True)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+def categoriaDetail(request, pk):
+    categoria = Categoria.objects.get(id=pk)
+    serializer = CategoriaSerializer(categoria, many=False)
+    return Response(serializer.data)
 
 # def for productos
 

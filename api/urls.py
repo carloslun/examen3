@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('cliente/categoria-list/', views_core.categoriaList, name="categoria-list"),
     path('cliente/producto-list/', views_core.productoList, name="producto-list"),
+    path('cliente/categoria-detail/<str:pk>/', views_core.categoriaDetail, name="categoria-detail"),
 
 ]
