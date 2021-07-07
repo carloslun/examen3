@@ -24,6 +24,35 @@ def categoriaDetail(request, pk):
     serializer = CategoriaSerializer(categoria, many=False)
     return Response(serializer.data)
 
+
+@api_view(['POST'])
+def categoriaCreate(request):   
+    serializer = CategoriaSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)    
+
+
+@api_view(['POST'])
+def categoriaUpdate(request, pk):   
+    categoria = Categoria.objects.get(id=pk)
+    serializer = CategoriaSerializer(instance=categoria, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)  
+
+
+@api_view(['DELETE'])
+def categoriaDelete(request, pk):   
+    categoria = Categoria.objects.get(id=pk)
+    categoria.delete()
+
+    return Response('Item borrado campeon!')  
+
+
 # def for productos
 
 
@@ -34,5 +63,10 @@ def productoList(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def productoDetail(request, pk):
+    producto = Producto.objects.get(id=pk)
+    serializer = ProductoSerializer(producto, many=False)
+    return Response(serializer.data)
 
 

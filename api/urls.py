@@ -19,8 +19,18 @@ from core import views as views_core
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #categorias
     path('cliente/categoria-list/', views_core.categoriaList, name="categoria-list"),
-    path('cliente/producto-list/', views_core.productoList, name="producto-list"),
     path('cliente/categoria-detail/<str:pk>/', views_core.categoriaDetail, name="categoria-detail"),
+    #categorias administrador
+    path('administrador/categoria-create', views_core.categoriaCreate, name="categoria-create"), #-->
+    path('administrador/categoria-update/<str:pk>/', views_core.categoriaUpdate, name="categoria-update"), #-->
+    path('administrador/categoria-delete/<str:pk>/', views_core.categoriaDelete, name="categoria-delete"), #-->
+    
+
+
+    #productos
+    path('cliente/producto-list/', views_core.productoList, name="producto-list"),
+    path('cliente/producto-detail/<str:pk>/', views_core.productoDetail, name="producto-detail"),
 
 ]
